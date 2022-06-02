@@ -1,0 +1,14 @@
+#!/bin/bash
+set -x
+{ 
+libname=$(dirname "$0")
+cd $libname
+
+printf "Enter a Commit message: "
+read -r  message
+git add *
+git commit -m "$message" 
+git push; 
+
+}
+
