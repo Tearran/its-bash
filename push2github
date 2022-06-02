@@ -1,10 +1,10 @@
 #!/bin/bash
-
-#set -x
-{ 
-  tput smcup && clear
 libname=$(dirname "$0")
 cd $libname
+#set -x
+bob(){ 
+  tput smcup && clear
+
 
 printf "Enter a Commit message: "
 read -r  message
@@ -18,3 +18,9 @@ tput rmcup
 
 }
 
+whiptail --msgbox "$(echo $( git add * ) )" $(stty size)
+#whiptail --infobox "$(echo $( git add * ))" $(stty size)
+NAME=$(whiptail --inputbox "Please enter Comit message:" $(stty size) 3>&1 1>&2 2>&3)
+
+whiptail --msgbox  "$(echo $( git commit -m $NAME ) )" $(stty size)
+whiptail --msgbox "$(echo $(git push ) )" $(stty size)
