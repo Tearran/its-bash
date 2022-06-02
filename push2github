@@ -1,9 +1,19 @@
 #!/bin/bash
 
-git(){ 
-read -p "Enter a Commit message: " message
-git add *; 
-git commit -m "$message"; 
+#set -x
+{ 
+  tput smcup && clear
+libname=$(dirname "$0")
+cd $libname
+
+printf "Enter a Commit message: "
+read -r  message
+git add *
+git commit -m "$message" 
 git push; 
 
+printf "Commit and push complete.\nEnter any key to continue... "
+tput rmcup
+
 }
+
